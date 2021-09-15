@@ -13,6 +13,7 @@ io.on('connection', (client) => {
   });
 
   client.on('new-message', (payload) => {
+    console.log('new message', payload);
     // io.emit('new-message', payload);
     client.broadcast.emit('new-message', payload);
   });
