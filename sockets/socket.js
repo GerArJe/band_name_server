@@ -24,9 +24,13 @@ io.on('connection', (client) => {
     io.emit('message', { admin: 'New message' });
   });
 
-  client.on('new-message', (payload) => {
-    console.log('new message', payload);
-    // io.emit('new-message', payload);
-    client.broadcast.emit('new-message', payload);
+  client.on('vote-band', (payload) => {
+    bands.voteBand(payload.id);
+    io.emit('active-bands', bands.getBands());
   });
+  // client.on('new-message', (payload) => {
+  //   console.log('new message', payload);
+  //   // io.emit('new-message', payload);
+  //   client.broadcast.emit('new-message', payload);
+  // });
 });
