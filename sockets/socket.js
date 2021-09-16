@@ -28,6 +28,11 @@ io.on('connection', (client) => {
     bands.voteBand(payload.id);
     io.emit('active-bands', bands.getBands());
   });
+
+  client.on('add-band', (payload) => {
+    bands.addBand(new Band(payload.name));
+    io.emit('active-bands', bands.getBands());
+  });
   // client.on('new-message', (payload) => {
   //   console.log('new message', payload);
   //   // io.emit('new-message', payload);
